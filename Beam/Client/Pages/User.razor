@@ -1,3 +1,26 @@
 @page "/User"
+@page "/User/{name}"
+@using Beam.Shared
+@inject DataService data
 
 <h2>User Rays</h2>
+
+@foreach (var ray in Rays)
+{
+    <p>
+        <RayItem ray="@ray" />
+    </p>
+}
+
+@code {
+
+    [Parameter]
+    public string Name { get; set; } // stores value of 'name' in line 2
+
+    List<Ray> Rays = new List<Ray>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Rays = await data.GetUserRays(Name);
+    }
+}
