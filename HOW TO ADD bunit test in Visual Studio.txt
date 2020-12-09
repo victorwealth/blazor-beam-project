@@ -1,0 +1,5 @@
+1. Open Developer PowerShell terminal with CTRL ~
+2. Install a template for bunit project by running this command => dotnet new --install bunit.template::1.0.0-beta-11
+3. Add a new test project with the bunit template => dotnet new bunit -o Beam.Tests
+4. Add [Beam.Tests] to the solution => dotnet sln Beam.sln add Beam.Tests
+5. Add Beam.Client reference to Beam.Tests
