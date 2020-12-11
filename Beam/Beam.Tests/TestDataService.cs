@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace Beam.Tests
 {
@@ -35,7 +34,8 @@ namespace Beam.Tests
 
         public Task CreateRay(string text)
         {
-            throw new NotImplementedException();
+            UpdatedRays?.Invoke();
+            return Task.CompletedTask;
         }
 
         public Task GetFrequencies()
