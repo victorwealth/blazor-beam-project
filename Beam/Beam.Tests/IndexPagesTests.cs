@@ -1,4 +1,7 @@
-﻿using Bunit;
+﻿using Beam.Client.Pages;
+using Beam.Tests.Auth;
+using Bunit;
+using Microsoft.AspNetCore.Components.Authorization;
 using Xunit;
 
 namespace Beam.Tests
@@ -8,8 +11,12 @@ namespace Beam.Tests
         [Fact]
         public void CounterStartsAtZero()
         {
+            Services.AddAuthenticationServices(TestAuthenticationStateProvider
+                .CreateAuthenticationState("TestUser"));
+
+            var wrapper = RenderComponent<CascadingAuthenticationState>(p => p.AddChildContent<Index>());
             // Arrange
-            var cut = RenderComponent<Beam.Client.Pages.Index>();
+            var cut = wrapper.FindComponent<Index>();
 
             // Assert
             Assert.Contains("Select a Frequency, or create a new one", cut.Markup);
